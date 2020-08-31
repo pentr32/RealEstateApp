@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TinyIoC;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -101,6 +102,13 @@ namespace RealEstateApp
         private async void CancelSave_Clicked(object sender, System.EventArgs e)
         {
             await Navigation.PopToRootAsync();
+        }
+
+        private async void LocationButton_Clicked(object sender, EventArgs e)
+        {
+            var location = await Geolocation.GetLocationAsync();
+            Property.Latitude = location.Latitude;
+            Property.Longitude = location.Longitude;
         }
     }
 }

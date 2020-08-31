@@ -31,6 +31,7 @@ namespace RealEstateApp.Models
         public List<string> ImageUrls { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+        public double? Distance { get; set; }
 
         public string MainImageUrl => ImageUrls?.FirstOrDefault() ?? GlobalSettings.Instance.NoImageUrl;
     }

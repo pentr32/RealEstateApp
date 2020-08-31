@@ -37,6 +37,21 @@
                     <Label FontSize="Medium" FontFamily="FA-solid">
                         <Label.FormattedText>
                             <FormattedString>
+                                <Span Text="{Static fa:IconFont.LocationArrow}"/>
+                                <Span Text=" " />
+                                <Span Text="Location" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Latitude}"></Label>
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Longitude}"></Label>
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="LocationButton" Clicked="LocationButton_Clicked" FontFamily="FA-solid" Text="{Static fa:IconFont.Thumbtack}"></Button>
+                    </StackLayout>
+
+                    <Label FontSize="Medium" FontFamily="FA-solid">
+                        <Label.FormattedText>
+                            <FormattedString>
                                 <Span Text="{Static fa:IconFont.Tag}"/>
                                 <Span Text=" " />
                                 <Span Text="Price" />

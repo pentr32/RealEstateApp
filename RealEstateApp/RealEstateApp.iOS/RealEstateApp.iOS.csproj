@@ -133,4 +133,7 @@
       <Name>RealEstateApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fa_sort_amount_asc.png" />
+  </ItemGroup>
 </Project>
