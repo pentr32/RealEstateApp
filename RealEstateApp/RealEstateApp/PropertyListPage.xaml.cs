@@ -18,7 +18,8 @@ namespace RealEstateApp
     {
         IRepository _repository;
         public ObservableCollection<PropertyListItem> PropertiesCollection { get; set; } = new ObservableCollection<PropertyListItem>();
-        public Location _myLocation;
+        private Location _myLocation;
+        private bool _sorting;
 
         public PropertyListPage()
         {
@@ -58,7 +59,8 @@ namespace RealEstateApp
 
             foreach (Property item in items)
             {
-                item.Distance = Location.CalculateDistance((double)item.Latitude, (double)item.Longitude, _myLocation, DistanceUnits.Kilometers);
+                if(_myLocation != null) item.Distance = Location.CalculateDistance((double)item.Latitude, (double)item.Longitude, _myLocation, DistanceUnits.Kilometers);
+
                 PropertiesCollection.Add(new PropertyListItem(item));
             }
         }
@@ -80,7 +82,11 @@ namespace RealEstateApp
 
         private void ToolBarSorting_Clicked(object sender, EventArgs e)
         {
-            PropertiesCollection = new ObservableCollection<PropertyListItem>(PropertiesCollection.OrderBy(x => x.Property.Distance));
+            _sorting = !_sorting;
+
+            if(_sorting) PropertiesCollection = new ObservableCollection<PropertyListItem>(PropertiesCollection.OrderBy(x => x.Property.Distance));
+
+            else PropertiesCollection = new ObservableCollection<PropertyListItem>(PropertiesCollection.OrderByDescending(x => x.Property.Distance));
         }
     }
 }

@@ -136,4 +136,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\fa_sort_amount_asc.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\compass.png" />
+  </ItemGroup>
 </Project>

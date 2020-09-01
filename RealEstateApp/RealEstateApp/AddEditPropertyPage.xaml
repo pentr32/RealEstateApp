@@ -12,6 +12,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="CancelSave_Clicked" Text="Cancel" />
         <ToolbarItem Clicked="SaveProperty_Clicked" Text="Save" />
+        <ToolbarItem Clicked="AspectProp_Clicked" Text="Aspect" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -32,7 +33,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Entry FontSize="Medium" Text="{Binding Property.Address}" />
+                    <Entry x:Name="EntryAddress" FontSize="Medium" Text="{Binding Property.Address}" />
 
                     <Label FontSize="Medium" FontFamily="FA-solid">
                         <Label.FormattedText>
@@ -47,6 +48,7 @@
                         <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Latitude}"></Label>
                         <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Longitude}"></Label>
                         <Button HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="LocationButton" Clicked="LocationButton_Clicked" FontFamily="FA-solid" Text="{Static fa:IconFont.Thumbtack}"></Button>
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="HouseAddressButton" Clicked="HouseAddressButton_Clicked" FontFamily="FA-solid" Text="{Static fa:IconFont.Home}"></Button>
                     </StackLayout>
 
                     <Label FontSize="Medium" FontFamily="FA-solid">

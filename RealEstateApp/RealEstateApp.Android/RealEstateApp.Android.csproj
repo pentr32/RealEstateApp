@@ -85,7 +85,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\compass.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEstateApp\RealEstateApp.csproj">
       <Project>{E0415E89-4AEE-42C1-9A53-226C41338FD7}</Project>
