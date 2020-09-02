@@ -15,6 +15,7 @@
                     <x:Array Type="{x:Type menuItem:MenuItem}">
                         <menuItem:MenuItem Title="About" Icon="home.png" Target="{x:Type local:AboutPage}" />
                         <menuItem:MenuItem Title="Properties" Icon="home.png" Target="{x:Type local:PropertyListPage}" />
+                        <menuItem:MenuItem Title="Height Calculator" Icon="home.png" Target="{x:Type local:HeightCalculatorPage}" />
                     </x:Array>
                 </ListView.ItemsSource>
                 <ListView.ItemTemplate>
