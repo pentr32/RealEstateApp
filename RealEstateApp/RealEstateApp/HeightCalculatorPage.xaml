@@ -3,17 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RealEstateApp.HeightCalculatorPage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" Padding="15">
             <Label FontSize="Large" VerticalOptions="Start" HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Current altitude: "/>
-                        <Span Text="{Binding CurrentAltitude, StringFormat='{0} &#109;'}" />
+                        <Span Text="{Binding CurrentAltitude, StringFormat='{0:N2} &#109;'}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
-            <Entry Placeholder="Measurement Label" HorizontalOptions="Fill"></Entry>
+            <Entry Text="{Binding MeasurementLabel}" Placeholder="Measurement Label" HorizontalOptions="Fill"></Entry>
+            <Button HorizontalOptions="Fill" x:Name="SaveMeasurementButton" Clicked="SaveMeasurementButton_Clicked" Text="Save"></Button>
+            <ListView
+                x:Name="MeasurementsListView"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="true"
+                ItemsSource="{Binding Measurements}"
+                VerticalOptions="FillAndExpand">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label FontSize="Large">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Display}"/>
+                                        <Span Text="  " />
+                                        <Span Text="{Binding HeightChange, StringFormat='{0:N2}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Label FontSize="Medium" VerticalOptions="EndAndExpand" HorizontalOptions="Center">
                 <Label.FormattedText>
