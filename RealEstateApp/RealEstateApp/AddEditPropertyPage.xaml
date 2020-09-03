@@ -23,10 +23,10 @@
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout Padding="15" Spacing="20">
 
-                    <Label FontSize="Medium" FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.Home}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Home}"/>
                                 <Span Text=" " />
                                 <Span Text="Address*" />
                             </FormattedString>
@@ -34,10 +34,10 @@
                     </Label>
                     <Entry x:Name="EntryAddress" FontSize="Medium" Text="{Binding Property.Address}" />
 
-                    <Label FontSize="Medium" FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.LocationArrow}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.LocationArrow}"/>
                                 <Span Text=" " />
                                 <Span Text="Location" />
                             </FormattedString>
@@ -64,10 +64,10 @@
                         <Button VerticalOptions="CenterAndExpand" Clicked="AspectProp_Clicked" x:Name="CompassButton" FontFamily="FA-solid" Text="{Static fa:IconFont.DraftingCompass}"></Button>
                     </StackLayout>
 
-                    <Label FontSize="Medium" FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.Tag}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Tag}"/>
                                 <Span Text=" " />
                                 <Span Text="Price" />
                             </FormattedString>
@@ -76,10 +76,10 @@
                     <Entry FontSize="Medium"
                            Text="{Binding Property.Price, Converter={converters:NullableIntConverter}}" />
 
-                    <Label FontSize="Medium" FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.Bed}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Bed}"/>
                                 <Span Text=" " />
                                 <Span Text="Bedrooms*" />
                             </FormattedString>
@@ -91,10 +91,10 @@
                         ReturnType="Next"
                         Text="{Binding Property.Beds, Converter={converters:NullableIntConverter}}" />
 
-                    <Label FontSize="Medium"  FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.Bath}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Bath}"/>
                                 <Span Text=" " />
                                 <Span Text="Bathroom" />
                             </FormattedString>
@@ -106,10 +106,10 @@
                         ReturnType="Next"
                         Text="{Binding Property.Baths, Converter={converters:NullableIntConverter}}" />
 
-                    <Label FontSize="Medium" FontFamily="FA-solid">
+                    <Label FontSize="Medium">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="{Static fa:IconFont.Parking}"/>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Parking}"/>
                                 <Span Text=" " />
                                 <Span Text="Parking" />
                             </FormattedString>

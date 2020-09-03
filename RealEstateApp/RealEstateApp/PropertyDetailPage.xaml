@@ -23,6 +23,11 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Image
                 Grid.Row="0"
@@ -53,6 +58,8 @@
                 Text="{Binding Property.Address}" />
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
@@ -107,13 +114,77 @@
                 Margin="0,0,0,20"
                 FontSize="14"
                 Text="{Binding Property.Description}" />
-            <Button Grid.Row="7" Margin="0,0,0,20" x:Name="ButtonSpeechDesc" FontSize="Medium" FontFamily="FA-solid" Text="{Static fa:IconFont.Play}" Clicked="ButtonSpeechDesc_Clicked"></Button>
+            <Button Grid.Row="7" Margin="0,0,0,5" x:Name="ButtonSpeechDesc" FontSize="Medium" FontFamily="FA-solid" Text="{Static fa:IconFont.Play}" Clicked="ButtonSpeechDesc_Clicked"></Button>
+
+            <Grid Grid.Row="8" RowSpacing="0" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Margin="0,0,0,5"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    Text="Vendor:" />
+                
+                <Label Grid.Row="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.User}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span Text="{Binding Property.Vendor.FullName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="2">
+                    
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped_Email"
+                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                    
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Envelope}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span TextColor="Blue" Text="{Binding Property.Vendor.Email}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="3">
+                    
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped_Phone"
+                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                    
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Phone}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span TextColor="Blue" Text="{Binding Property.Vendor.Phone}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+
             <Label
-                Grid.Row="8"
+                Grid.Row="9"
                 FontAttributes="Bold"
                 FontSize="14"
-                Text="Listed by:" />
-            <Grid Grid.Row="9">
+                Text="Listed by:"
+                Margin="0,0,0,5"/>
+
+            <Grid Grid.Row="10" Margin="0,0,0,15">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -144,6 +215,38 @@
                         Text="{Binding Agent.Phone}" />
                 </Grid>
             </Grid>
+
+            <Grid Grid.Row="11">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" 
+                        x:Name="ButtonMapDestination" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.MapMarkedAlt}" 
+                        Clicked="ButtonMapDestination_Clicked"></Button>
+                
+                <Button Grid.Row="0" Grid.Column="1"
+                        x:Name="ButtonNavigateToDestination" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.Directions}" 
+                        Clicked="ButtonNavigateToDestination_Clicked"></Button>
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="ButtonLinked" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.Link}" 
+                        Clicked="ButtonLinked_Clicked"></Button>
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        x:Name="ButtonExternalLink" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.ExternalLinkAlt}" 
+                        Clicked="ButtonExternalLink_Clicked"></Button>
+
+                <Button Grid.Row="2" Grid.Column="0"
+                        x:Name="ButtonFileSignature" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.FileSignature}" 
+                        Clicked="ButtonFileSignature_Clicked"></Button>
+            </Grid>
+            
         </Grid>
     </ScrollView>
 </ContentPage>

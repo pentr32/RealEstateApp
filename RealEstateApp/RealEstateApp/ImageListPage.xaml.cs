@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace RealEstateApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ImageListPage : CarouselPage
+    public partial class ImageListPage : ContentPage
     {
         #region Properties
         public List<string> ImageUrls { get; set; }
@@ -21,7 +21,7 @@ namespace RealEstateApp
         #region LifeTime
         protected override void OnAppearing()
         {
-            Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+            Accelerometer.ReadingChanged += Accelerometer_ReadingChanged;
             Accelerometer.Start(speed);
             base.OnAppearing();
         }
@@ -29,8 +29,8 @@ namespace RealEstateApp
         protected override void OnDisappearing()
         {
             Accelerometer.Stop();
-            Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
-            Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+            Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
+            Accelerometer.ReadingChanged -= Accelerometer_ReadingChanged;
             base.OnDisappearing();
         }
         #endregion LifeTime
@@ -41,50 +41,35 @@ namespace RealEstateApp
             InitializeComponent();
 
             ImageUrls = _imageUrls;
-            LoadImages();
-        }
-
-        void LoadImages()
-        {
-            foreach (string image in ImageUrls)
-            {
-                Thickness padding;
-                switch (Device.RuntimePlatform)
-                {
-                    case Device.iOS:
-                    case Device.Android:
-                        padding = new Thickness(0, 40, 0, 0);
-                        break;
-                    default:
-                        padding = new Thickness();
-                        break;
-                }
-
-                var imageContentPage = new ContentPage
-                {
-                    Padding = padding,
-                    Content = new StackLayout
-                    {
-                        Children = {
-                            new Image
-                            {
-                                Source = image,
-                                HorizontalOptions = LayoutOptions.FillAndExpand,
-                                VerticalOptions = LayoutOptions.CenterAndExpand
-                            }
-                        }
-                    }
-                };
-
-                Children.Add(imageContentPage);
-            }
+            BindingContext = this;
         }
         #endregion Constructor and other methods
 
         #region Events
-        private void Accelerometer_ShakeDetected(object sender, EventArgs e)
+        private void Accelerometer_ReadingChanged(object sender, AccelerometerChangedEventArgs e)
         {
+            var reading = e.Reading;
 
+            if(reading.Acceleration.X > 0)
+            {
+                if (CarouselViewer.Position == ImageUrls.Count - 1) CarouselViewer.Position = 0;
+
+                else
+                {
+                    CarouselViewer.Position = CarouselViewer.Position = 1;
+                }
+            }
+
+
+            else if(reading.Acceleration.X < 0)
+            {
+                if (CarouselViewer.Position == 0) CarouselViewer.Position = ImageUrls.Count - 1;
+
+                else
+                {
+                    CarouselViewer.Position = CarouselViewer.Position - 1;
+                }
+            }
         }
         #endregion
     }

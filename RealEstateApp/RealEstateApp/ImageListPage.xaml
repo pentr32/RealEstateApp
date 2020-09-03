@@ -1,21 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RealEstateApp.ImageListPage"
              Title="Images">
-    <CarouselPage.ItemTemplate>
-        <DataTemplate>
-            <ContentPage>
-                <ContentPage.Padding>
-                    <OnPlatform x:TypeArguments="Thickness">
-                        <On Platform="iOS, Android" Value="0,40,0,0" />
-                    </OnPlatform>
-                </ContentPage.Padding>
-                <StackLayout>
-                    <Label Text="{Binding Name}" FontSize="Medium" HorizontalOptions="Center" />
-                    <BoxView Color="{Binding Color}" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
-                </StackLayout>
-            </ContentPage>
-        </DataTemplate>
-    </CarouselPage.ItemTemplate>
-</CarouselPage>
+
+    <CarouselView x:Name="CarouselViewer" ItemsSource="{Binding ImageUrls}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <Image Source="{Binding}" />
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+    
+</ContentPage>
