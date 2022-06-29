@@ -9,6 +9,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddProperty_Clicked" />
+        <ToolbarItem x:Name="ToolBarSorting" Clicked="ToolBarSorting_Clicked" IconImageSource="fa_sort_amount_asc.png" />
     </ContentPage.ToolbarItems>
 
     <StackLayout>
@@ -103,6 +104,10 @@
                                     Grid.Row="3"
                                     FontSize="13"
                                     Text="{Binding Property.LandSize, StringFormat='Land Size: {0} &#x33a1;'}" />
+                                <Label
+                                    Grid.Row="4"
+                                    FontSize="13"
+                                    Text="{Binding Property.Distance, StringFormat='{0:N2} &#x339E; away'}" />
                             </Grid>
                         </Grid>
                     </ViewCell>

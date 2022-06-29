@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using TinyIoC;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace RealEstateApp
 {
@@ -16,10 +17,14 @@ namespace RealEstateApp
     public partial class PropertyListPage : ContentPage
     {
         IRepository _repository;
-        public ObservableCollection<PropertyListItem> PropertiesCollection { get; } = new ObservableCollection<PropertyListItem>();
+        public ObservableCollection<PropertyListItem> PropertiesCollection { get; set; } = new ObservableCollection<PropertyListItem>();
+        private Location _myLocation;
+        private bool _sorting;
+
         public PropertyListPage()
         {
             InitializeComponent();
+            SortAsync();
 
             _repository = TinyIoCContainer.Current.Resolve<IRepository>();
 
@@ -28,6 +33,7 @@ namespace RealEstateApp
 
 
             BindingContext = this;
+            
         }
 
         protected override void OnAppearing()
@@ -43,16 +49,18 @@ namespace RealEstateApp
             {
                 LoadProperties();
                 ItemsListView.IsRefreshing = false;
-
             });
         }
 
         void LoadProperties()
         {
+            PropertiesCollection.Clear();
             var items = _repository.GetProperties();
 
             foreach (Property item in items)
             {
+                if(_myLocation != null) item.Distance = Location.CalculateDistance((double)item.Latitude, (double)item.Longitude, _myLocation, DistanceUnits.Kilometers);
+
                 PropertiesCollection.Add(new PropertyListItem(item));
             }
         }
@@ -64,6 +72,21 @@ namespace RealEstateApp
         private async void AddProperty_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddEditPropertyPage());
+        }
+
+        private async void SortAsync()
+        {
+            _myLocation = await Geolocation.GetLastKnownLocationAsync();
+            if (_myLocation == null) _myLocation = await Geolocation.GetLocationAsync();
+        }
+
+        private void ToolBarSorting_Clicked(object sender, EventArgs e)
+        {
+            _sorting = !_sorting;
+
+            if(_sorting) PropertiesCollection = new ObservableCollection<PropertyListItem>(PropertiesCollection.OrderBy(x => x.Property.Distance));
+
+            else PropertiesCollection = new ObservableCollection<PropertyListItem>(PropertiesCollection.OrderByDescending(x => x.Property.Distance));
         }
     }
 }
