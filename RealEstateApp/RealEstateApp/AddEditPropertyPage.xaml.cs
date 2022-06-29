@@ -18,6 +18,7 @@ namespace RealEstateApp
     {
         private IRepository Repository;
         public ObservableCollection<Agent> Agents { get; }
+        public CompassItem CompassAspect { get; set; } = new CompassItem();
 
         private Property _property;
         public Property Property
@@ -273,7 +274,7 @@ namespace RealEstateApp
 
         private async void AspectProp_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CompassPage());
+            await Navigation.PushAsync(new CompassPage(CompassAspect));
         }
     }
 }

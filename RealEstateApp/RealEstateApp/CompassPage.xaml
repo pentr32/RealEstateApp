@@ -22,8 +22,8 @@
                     <FormattedString>
                         <Span Text="{Static fa:IconFont.ArrowUp}"/>
                         <Span Text=" " />
-                        <Span Text="{Binding CurrentAspect}" />
-                        <Span Text=" Aspect" />
+                        <Span x:Name="aspectSpan" Text="{Binding CompassAspect.CurrentAspectAbr}" />
+                        <Span Text=" " />
                         <Span Text=" " />
                         <Span Text="{Static fa:IconFont.ArrowUp}"/>
                     </FormattedString>
@@ -31,11 +31,11 @@
             </Label>
 
             <Image Source="compass.png" 
-            Rotation="{Binding RotationAngle}" 
+            Rotation="{Binding CompassAspect.RotationAngle}" 
             Grid.Row="1" Grid.Column="0" 
             HorizontalOptions="Center"  />
 
-            <Label Text="{Binding CurrentHeading, StringFormat='Heading {0:N2}'}" 
+            <Label Text="{Binding CompassAspect.CurrentHeading, StringFormat='Heading {0:N2}'}" 
             Margin="0,20" 
             Grid.Row="2" Grid.Column="0" 
             HorizontalOptions="Center" />

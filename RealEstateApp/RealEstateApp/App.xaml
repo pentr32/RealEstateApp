@@ -10,17 +10,17 @@
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Color x:Key="WhiteColor">#FFFFFF</Color>
             
-            <Style x:Key="IconFont" TargetType="{x:Type Label}">
+            <!--<Style x:Key="IconFont" TargetType="{x:Type Label}">
                 <Setter Property="FontFamily">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:String">
                             <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
                             <On Platform="iOS">Font Awesome 5 Free</On>
-                            <!--<On Platform="UWP">/Assets/fa-solid-900.ttf#Font Awesome 5 Free</On>-->
+                            --><!--<On Platform="UWP">/Assets/fa-solid-900.ttf#Font Awesome 5 Free</On>--><!--
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
-            </Style>
+            </Style>-->
             
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
