@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fa="clr-namespace:FontAwesome"
+             mc:Ignorable="d"
+             x:Class="RealEstateApp.PropertyDetailPage"
+             Title="{Binding Property.Address}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="EditProperty_Clicked"  Text="Edit" />
+    </ContentPage.ToolbarItems>
+
+    <ScrollView VerticalOptions="FillAndExpand">
+        <Grid Padding="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image
+                Grid.Row="0"
+                Margin="-10,-10,-10,0"
+                Aspect="AspectFill"
+                HeightRequest="225"
+                Source="{Binding Property.MainImageUrl}">
+                
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped"
+                        NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+                
+            </Image>
+            <Label
+                Grid.Row="1"
+                FontAttributes="Bold"
+                FontSize="16"
+                LineBreakMode="NoWrap"
+                Style="{DynamicResource ListItemTextStyle}"
+                Text="{Binding Property.Price, StringFormat='{0:C0}'}" />
+            <Label
+                Grid.Row="2"
+                FontSize="16"
+                LineBreakMode="NoWrap"
+                Style="{DynamicResource ListItemDetailTextStyle}"
+                Text="{Binding Property.Address}" />
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    FontSize="16"
+                    FontFamily="FA-solid"
+                    Text="{Static fa:IconFont.Bed}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="1"
+                    FontSize="16"
+                    Text="{Binding Property.Beds}" />
+                <Label
+                    Grid.Column="2"
+                    FontSize="16"
+                    FontFamily="FA-solid"
+                    Text="{Static fa:IconFont.Bath}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="3"
+                    FontSize="16"
+                    Text="{Binding Property.Baths}" />
+                <Label
+                    Grid.Column="4"
+                    FontSize="16"
+                    FontFamily="FA-solid"
+                    Text="{Static fa:IconFont.Parking}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Column="5"
+                    FontSize="16"
+                    Text="{Binding Property.Parking}" />
+            </Grid>
+            <Label
+                Grid.Row="4"
+                FontSize="14"
+                Text="{Binding Property.LandSize, StringFormat='Land size: {0} &#x33a1;'}" />
+            <Label
+                Grid.Row="5"
+                Margin="0,20,0,0"
+                FontAttributes="Bold"
+                FontSize="14"
+                Text="Description:" />
+            <Label
+                Grid.Row="6"
+                Margin="0,0,0,20"
+                FontSize="14"
+                Text="{Binding Property.Description}" />
+            <Button Grid.Row="7" Margin="0,0,0,5" x:Name="ButtonSpeechDesc" FontSize="Medium" FontFamily="FA-solid" Text="{Static fa:IconFont.Play}" Clicked="ButtonSpeechDesc_Clicked"></Button>
+
+            <Grid Grid.Row="8" RowSpacing="0" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Margin="0,0,0,5"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    Text="Vendor:" />
+                
+                <Label Grid.Row="1">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.User}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span Text="{Binding Property.Vendor.FullName}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="2">
+                    
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped_Email"
+                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                    
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Envelope}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span TextColor="Blue" Text="{Binding Property.Vendor.Email}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label Grid.Row="3">
+                    
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped_Phone"
+                        NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                    
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Phone}" />
+                            <Span Text=" " />
+                            <Span Text=" " />
+                            <Span TextColor="Blue" Text="{Binding Property.Vendor.Phone}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+
+            <Label
+                Grid.Row="9"
+                FontAttributes="Bold"
+                FontSize="14"
+                Text="Listed by:"
+                Margin="0,0,0,5"/>
+
+            <Grid Grid.Row="10" Margin="0,0,0,15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                    Grid.Column="0"
+                    Source="{Binding Agent.ImageUrl}"
+                    VerticalOptions="Start"
+                    WidthRequest="100" />
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="14"
+                        Text="{Binding Agent.Name}" />
+                    <Label
+                        Grid.Row="1"
+                        FontSize="12"
+                        Text="{Binding Agent.Email}" />
+                    <Label
+                        Grid.Row="2"
+                        FontSize="12"
+                        Text="{Binding Agent.Phone}" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="11">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" 
+                        x:Name="ButtonMapDestination" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.MapMarkedAlt}" 
+                        Clicked="ButtonMapDestination_Clicked"></Button>
+                
+                <Button Grid.Row="0" Grid.Column="1"
+                        x:Name="ButtonNavigateToDestination" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.Directions}" 
+                        Clicked="ButtonNavigateToDestination_Clicked"></Button>
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="ButtonLinked" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.Link}" 
+                        Clicked="ButtonLinked_Clicked"></Button>
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        x:Name="ButtonExternalLink" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.ExternalLinkAlt}" 
+                        Clicked="ButtonExternalLink_Clicked"></Button>
+
+                <Button Grid.Row="2" Grid.Column="0"
+                        x:Name="ButtonFileSignature" FontSize="Medium" 
+                        FontFamily="FA-solid" Text="{Static fa:IconFont.FileSignature}" 
+                        Clicked="ButtonFileSignature_Clicked"></Button>
+            </Grid>
+            
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:RealEstateApp.Converters"
+             xmlns:fa="clr-namespace:FontAwesome"
+             mc:Ignorable="d"
+             x:Class="RealEstateApp.AddEditPropertyPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="CancelSave_Clicked" Text="Cancel" />
+        <ToolbarItem Clicked="SaveProperty_Clicked" Text="Save" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#E8E8E8">
+            <Label
+                BackgroundColor="{Binding StatusColor}"
+                IsVisible="{Binding StatusMessage, Converter={converters:StringBoolConverter}}"
+                Text="{Binding StatusMessage}" />
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout Padding="15" Spacing="20">
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Home}"/>
+                                <Span Text=" " />
+                                <Span Text="Address*" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry x:Name="EntryAddress" FontSize="Medium" Text="{Binding Property.Address}" />
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.LocationArrow}"/>
+                                <Span Text=" " />
+                                <Span Text="Location" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Latitude}"></Label>
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="{Binding Property.Longitude}"></Label>
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="LocationButton" Clicked="LocationButton_Clicked" FontFamily="FA-solid" Text="{Static fa:IconFont.Thumbtack}"></Button>
+                        <Button HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" x:Name="HouseAddressButton" Clicked="HouseAddressButton_Clicked" FontFamily="FA-solid" Text="{Static fa:IconFont.Home}"></Button>
+                    </StackLayout>
+
+                    <Label FontSize="Medium" FontFamily="FA-solid">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Static fa:IconFont.Compass}"/>
+                                <Span Text=" " />
+                                <Span Text="Aspect" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry HorizontalOptions="FillAndExpand" Text="{Binding CompassAspect.CurrentAspect}" VerticalOptions="CenterAndExpand" Placeholder="Current aspect..."></Entry>
+                        <Button VerticalOptions="CenterAndExpand" Clicked="AspectProp_Clicked" x:Name="CompassButton" FontFamily="FA-solid" Text="{Static fa:IconFont.DraftingCompass}"></Button>
+                    </StackLayout>
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Tag}"/>
+                                <Span Text=" " />
+                                <Span Text="Price" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry FontSize="Medium"
+                           Text="{Binding Property.Price, Converter={converters:NullableIntConverter}}" />
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Bed}"/>
+                                <Span Text=" " />
+                                <Span Text="Bedrooms*" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry
+                        FontSize="Medium"
+                        Keyboard="Numeric"
+                        ReturnType="Next"
+                        Text="{Binding Property.Beds, Converter={converters:NullableIntConverter}}" />
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Bath}"/>
+                                <Span Text=" " />
+                                <Span Text="Bathroom" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry
+                        FontSize="Medium"
+                        Keyboard="Numeric"
+                        ReturnType="Next"
+                        Text="{Binding Property.Baths, Converter={converters:NullableIntConverter}}" />
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span FontFamily="FA-solid" Text="{Static fa:IconFont.Parking}"/>
+                                <Span Text=" " />
+                                <Span Text="Parking" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry
+                        FontSize="Medium"
+                        Keyboard="Numeric"
+                        ReturnType="Next"
+                        Text="{Binding Property.Parking, Converter={converters:NullableIntConverter}}" />
+
+                    <Label FontSize="Medium" FontFamily="FA-solid">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Static fa:IconFont.Square}"/>
+                                <Span Text=" " />
+                                <Span Text="Land Size"/>
+                                <Span Text=" "/>
+                                <Span Text="(&#x33a1;)"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Entry
+                        FontSize="Medium"
+                        Keyboard="Numeric"
+                        ReturnType="Next"
+                        Text="{Binding Property.LandSize, Converter={converters:NullableIntConverter}}" />
+
+                    <Label FontSize="Medium" FontFamily="FA-solid">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Static fa:IconFont.FileAlt}"/>
+                                <Span Text=" " />
+                                <Span Text="Description" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Editor
+                        Margin="0"
+                        FontSize="Medium"
+                        HeightRequest="50"
+                        Text="{Binding Property.Description}" />
+
+                    <Label FontSize="Medium" FontFamily="FA-solid" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Static fa:IconFont.UserTie}"/>
+                                <Span Text=" " />
+                                <Span Text="Agent*" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Picker
+                        FontSize="Medium"
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Agents}"
+                        SelectedItem="{Binding SelectedAgent}" />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

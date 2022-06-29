@@ -1,8 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              x:Class="RealEstateApp.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            
+            <!--<Style x:Key="IconFont" TargetType="{x:Type Label}">
+                <Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free Solid" />
+                            <On Platform="iOS">Font Awesome 5 Free</On>
+                            --><!--<On Platform="UWP">/Assets/fa-solid-900.ttf#Font Awesome 5 Free</On>--><!--
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>-->
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

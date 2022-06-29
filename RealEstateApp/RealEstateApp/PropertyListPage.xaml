@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fa="clr-namespace:FontAwesome"
+             mc:Ignorable="d"
+             x:Class="RealEstateApp.PropertyListPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="AddProperty_Clicked" />
+        <ToolbarItem x:Name="ToolBarSorting" Clicked="ToolBarSorting_Clicked" IconImageSource="fa_sort_amount_asc.png" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <ListView
+            x:Name="ItemsListView"
+            BackgroundColor="LightGray"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="true"
+            IsPullToRefreshEnabled="true"
+            RefreshControlColor =" Color.Red"
+            IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+            Refreshing="OnRefresh"
+            ItemTapped="ItemsListView_ItemTapped"
+            ItemsSource="{Binding PropertiesCollection}"
+            VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid
+                            Margin="0,0,0,20"
+                            Padding="20"
+                            BackgroundColor="White">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image
+                                Grid.Column="0"
+                                Margin="0,0,10,0"
+                                Aspect="AspectFit"
+                                HeightRequest="120"
+                                HorizontalOptions="Start"
+                                Source="{Binding Property.MainImageUrl}" />
+                            <Grid Grid.Column="1" Margin="0,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    FontAttributes="Bold"
+                                    FontSize="16"
+                                    LineBreakMode="TailTruncation"
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    Text="{Binding Property.Address}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontSize="13"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    Text="{Binding Property.Price, StringFormat='{0:C0}'}" />
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        FontSize="15"
+                                        FontFamily="FA-solid"
+                                        Text="{x:Static fa:IconFont.Bed}"/>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="13"
+                                        Text="{Binding Property.Beds}" />
+                                    <Label
+                                        Grid.Column="2"
+                                        FontSize="15"
+                                        FontFamily="FA-solid"
+                                        Text="{x:Static fa:IconFont.Bath}"/>
+                                    <Label
+                                        Grid.Column="3"
+                                        FontSize="13"
+                                        Text="{Binding Property.Baths}" />
+                                    <Label
+                                        Grid.Column="4"
+                                        FontSize="15"
+                                       FontFamily="FA-solid"
+                                        Text="{x:Static fa:IconFont.Parking}"/>
+                                    <Label
+                                        Grid.Column="5"
+                                        FontSize="13"
+                                        Text="{Binding Property.Parking}" />
+                                </Grid>
+                                <Label
+                                    Grid.Row="3"
+                                    FontSize="13"
+                                    Text="{Binding Property.LandSize, StringFormat='Land Size: {0} &#x33a1;'}" />
+                                <Label
+                                    Grid.Row="4"
+                                    FontSize="13"
+                                    Text="{Binding Property.Distance, StringFormat='{0:N2} &#x339E; away'}" />
+                            </Grid>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
